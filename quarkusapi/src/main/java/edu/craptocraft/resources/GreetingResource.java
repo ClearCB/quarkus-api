@@ -1,5 +1,6 @@
-package edu.craptocraft;
+package edu.craptocraft.resources;
 
+import edu.craptocraft.services.GreetingServices;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

@@ -1,4 +1,4 @@
-package edu.craptocraft;
+package edu.craptocraft.services;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
