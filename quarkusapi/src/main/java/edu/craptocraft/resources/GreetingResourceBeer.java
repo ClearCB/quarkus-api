@@ -1,5 +1,7 @@
 package edu.craptocraft.resources;
 
+import org.jboss.logging.Logger;
+
 import edu.craptocraft.models.Beer;
 import edu.craptocraft.services.GreetingServices;
 import jakarta.inject.Inject;
@@ -15,12 +17,15 @@ import jakarta.ws.rs.core.Response;
 @Path("/beer")
 public class GreetingResourceBeer {
 
+    Logger logger = Logger.getLogger(GreetingResourceBeer.class);
+
     @Inject
     GreetingServices services;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Beer hello() {
+    public Beer getBeer() {
+        logger.debug("Hello from log");
         return new Beer("Estrella", 322);
     }
 
