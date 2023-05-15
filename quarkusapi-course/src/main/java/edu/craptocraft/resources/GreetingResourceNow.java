@@ -21,19 +21,10 @@ public class GreetingResourceNow {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public WorldClock getNow() {
-        // In case we use param headers:
-        /*
-         * WorldClockHeaders wordlClockHeaders = new WorldClockHeaders();
-         * worldClockHeaders.logger = "DEBUG";
-         * 
-         * And pass to the method this object:
-         * return worldClockService.getNow(worldClockHeaders);
-         */
-
-        WorldClockHeaders worldClockHeaders = new WorldClockHeaders();
-        worldClockHeaders.logger = "DEBUG";
-        return worldClockService.getNow(worldClockHeaders);
-
+        // Params headers
+        // WorldClockHeaders worldClockHeaders = new WorldClockHeaders();
+        // worldClockHeaders.logger = "DEBUG";
+        // return worldClockService.getNow(worldClockHeaders);
         return worldClockService.getNow();
     }
 
