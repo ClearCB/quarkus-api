@@ -1,5 +1,6 @@
 package edu.craptocraft.resources;
 
+import edu.craptocraft.models.Order;
 import edu.craptocraft.services.GreetingServices;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotBlank;
