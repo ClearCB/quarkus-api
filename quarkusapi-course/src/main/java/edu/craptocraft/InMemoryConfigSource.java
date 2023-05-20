@@ -11,7 +11,7 @@ public class InMemoryConfigSource implements ConfigSource {
 
     public InMemoryConfigSource() {
 
-        this.prop.put("greetings.message", "Memoty Hello");
+        this.prop.put("greetings.message", "Aloha");
     }
 
     @Override

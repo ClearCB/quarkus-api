@@ -1,6 +1,7 @@
 package edu.craptocraft.resources;
 
 import edu.craptocraft.models.Order;
+import edu.craptocraft.services.ExpensiveService;
 import edu.craptocraft.services.GreetingServices;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.NotBlank;
@@ -19,10 +20,20 @@ public class GreetingResource {
     @Inject
     GreetingServices services;
 
+    @Inject
+    ExpensiveService expensiveService;
+
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return services.toUpperCase();
+    }
+
+    @GET
+    @Path("/calculate")
+    @Produces(MediaType.TEXT_PLAIN)
+    public int calcuate() {
+        return expensiveService.calculate();
     }
 
     @GET
