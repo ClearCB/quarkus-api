@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS Sample;
+CREATE TABLE Sample
+(
+    id INT NOT NULL AUTO_INCREMENT UNIQUE,
+    name VARCHAR (255) NOT NULL, 
+    PRIMARY KEY (id)
+);
+INSERT INTO Sample (id, name) VALUES (2000, 'Pineapple');
