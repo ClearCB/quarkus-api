@@ -1,7 +1,6 @@
 package edu.craptocraft.quarkusapicoursesecond;
 
 import java.net.URI;
-import java.sql.Array;
 import java.util.List;
 
 import org.wildfly.common.annotation.NotNull;

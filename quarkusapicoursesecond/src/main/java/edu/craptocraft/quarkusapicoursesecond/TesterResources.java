@@ -1,12 +1,10 @@
 package edu.craptocraft.quarkusapicoursesecond;
 
 import java.net.URI;
-import java.sql.Array;
 import java.util.List;
 
 import org.wildfly.common.annotation.NotNull;
 
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
