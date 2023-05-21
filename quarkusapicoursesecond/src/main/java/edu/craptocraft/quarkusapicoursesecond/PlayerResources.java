@@ -17,52 +17,55 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/tester")
-public class TesterResources {
+@Path("/player")
+public class PlayerResources {
+
+    @Inject
+    PlayerRepository playerRepository;
 
     @GET
     @Path("/{id}/id/txt")
     @Produces(MediaType.TEXT_PLAIN)
-    public Tester getDeveloperText(@PathParam("id") Integer id) {
-        return Tester.findById(id);
+    public Player getDeveloperText(@PathParam("id") Long id) {
+        return playerRepository.findById(id);
     }
 
     @GET
     @Path("/{id}/id/js")
     @Produces(MediaType.APPLICATION_JSON)
-    public Tester getDeveloperJSON(@PathParam("id") Long id) {
-        return Tester.findById(id);
+    public Player getDeveloperJSON(@PathParam("id") Long id) {
+        return playerRepository.findById(id);
     }
 
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Tester> getDevelopers() {
+    public List<Player> getDevelopers() {
 
-        return Tester.findAll().list();
+        return playerRepository.findAll().list();
     }
 
     @GET
     @Path("/{name}/name/js")
     @Produces(MediaType.APPLICATION_JSON)
-    public Tester getDeveloperPerName(@NotNull @PathParam("name") String name) {
-        return Tester.find("name", name).firstResult();
+    public Player getDeveloperPerName(@NotNull @PathParam("name") String name) {
+        return playerRepository.find("name", name).firstResult();
     }
 
     @GET
     @Path("/{name}/{age}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Tester getDeveloperPerNameAge(@PathParam("name") String name, @PathParam("age") long age) {
-        return Tester.find("name = ?1 and age = ?2", name, age).firstResult();
+    public Player getDeveloperPerNameAge(@PathParam("name") String name, @PathParam("age") long age) {
+        return playerRepository.find("name = ?1 and age = ?2", name, age).firstResult();
     }
 
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createDev(Tester tester) {
+    public Response createDev(Player player) {
 
-        tester.persist();
-        return Response.created(URI.create("/dev/" + tester.id))
+        playerRepository.create(player);
+        return Response.created(URI.create("/dev/" + player.getId()))
                 .build();
     }
 }
