@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.craptocraft.finalapiquarkus.models.SampleMTO;
-import edu.craptocraft.finalapiquarkus.services.ServicesSampleAR;
 import edu.craptocraft.finalapiquarkus.services.ServicesSampleMTO;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;

@@ -1,10 +1,14 @@
 package edu.craptocraft.finalapiquarkus.models;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "SampleMTO")
 public class SampleMTO {
 
     @Id
@@ -16,6 +20,10 @@ public class SampleMTO {
     @ManyToOne
     @JoinColumn(name = "sampleOTM_id")
     public SampleOTM sampleOTM;
+
+    public SampleMTO() {
+        // Evitar problemas
+    }
 
     public SampleMTO(int id, String name) {
 
