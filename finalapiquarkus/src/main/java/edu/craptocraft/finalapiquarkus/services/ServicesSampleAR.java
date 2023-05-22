@@ -3,8 +3,8 @@ package edu.craptocraft.finalapiquarkus.services;
 import java.util.List;
 import java.util.Optional;
 
-import edu.craptocraft.finalapiquarkus.models.Sample;
-import edu.craptocraft.finalapiquarkus.repository.RepositorySample;
+import edu.craptocraft.finalapiquarkus.models.SampleAR;
+import edu.craptocraft.finalapiquarkus.repository.RepositorySampleAR;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -12,31 +12,31 @@ import jakarta.inject.Inject;
 public class ServicesSampleAR {
 
     @Inject
-    RepositorySample repository;
+    RepositorySampleAR repositoryAR;
 
     public ServicesSampleAR() {
         // Evitar problemas
     }
 
-    public List<Sample> list() {
+    public List<SampleAR> list() {
 
-        return repository.listAllSample();
+        return repositoryAR.listAllSample();
     }
 
-    public void add(Sample sample) {
+    public void add(SampleAR sample) {
 
-        repository.createSample(sample);
+        repositoryAR.createSample(sample);
     }
 
-    public void remove(Sample sample) {
+    public void remove(SampleAR sample) {
 
-        repository.deleteSample(sample);
+        repositoryAR.deleteSample(sample);
     }
 
-    public Optional<Sample> getSample(long id) {
+    public Optional<SampleAR> getSample(long id) {
 
-        return repository.getSample(id).isPresent()
-                ? repository.getSample(id)
+        return repositoryAR.getSample(id).isPresent()
+                ? repositoryAR.getSample(id)
                 : Optional.ofNullable(null);
     }
 }

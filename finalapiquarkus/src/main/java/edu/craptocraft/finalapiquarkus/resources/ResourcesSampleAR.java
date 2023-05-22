@@ -3,8 +3,8 @@ package edu.craptocraft.finalapiquarkus.resources;
 import java.util.List;
 import java.util.Optional;
 
-import edu.craptocraft.finalapiquarkus.models.Sample;
-import edu.craptocraft.finalapiquarkus.services.ServicesSample;
+import edu.craptocraft.finalapiquarkus.models.SampleAR;
+import edu.craptocraft.finalapiquarkus.services.ServicesSampleAR;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -21,26 +21,26 @@ import jakarta.ws.rs.core.Response;
 public class ResourcesSampleAR {
 
     @Inject
-    ServicesSample servicesSample;
+    ServicesSampleAR servicesSampleAR;
 
     // curl localhost:8080/base/list
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Sample> list() {
-        return servicesSample.list();
+    public List<SampleAR> list() {
+        return servicesSampleAR.list();
     }
 
     // curl localhost:8080/base/get/1
     @Path("/get/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll(@PathParam("id") long id) {
+    public Response getOne(@PathParam("id") long id) {
 
-        Optional<Sample> sample = servicesSample.getSample(id);
+        Optional<SampleAR> sampleAR = servicesSampleAR.getSample(id);
 
-        return sample.isPresent()
-                ? Response.status(Response.Status.OK).entity(sample.get()).build()
+        return sampleAR.isPresent()
+                ? Response.status(Response.Status.OK).entity(sampleAR.get()).build()
                 : Response.status(Response.Status.NOT_FOUND).build();
     }
 
@@ -48,9 +48,9 @@ public class ResourcesSampleAR {
     // application/json" localhost:8080/base
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String post(Sample sample) {
-        servicesSample.add(sample);
-        return "Inserted data";
+    public SampleAR post(SampleAR sampleAR) {
+        servicesSampleAR.add(sampleAR);
+        return sampleAR;
     }
 
     // curl -X PUT -H "Content-Type:
@@ -66,8 +66,8 @@ public class ResourcesSampleAR {
     @Path("/{id}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public String delete(Sample sample) {
-        servicesSample.remove(sample);
-        return "Deleted data";
+    public SampleAR delete(SampleAR sampleAR) {
+        servicesSampleAR.remove(sampleAR);
+        return sampleAR;
     }
 }
