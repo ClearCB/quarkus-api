@@ -16,7 +16,7 @@ public class ResourcesSampleMTOTest {
                 .then()
                 .statusCode(200)
                 .body(is(
-                        "[{\"id\":1,\"name\":\"ApplePEN\"},{\"id\":2,\"name\":\"Orange\"},{\"id\":3,\"name\":\"Lemon\"}]"));
+                        "[{\"id\":1,\"name\":\"ApplePEN\",\"sampleOTM\":{\"id\":3,\"name\":\"Lemon\"}},{\"id\":2,\"name\":\"Orange\",\"sampleOTM\":{\"id\":2,\"name\":\"Orange\"}},{\"id\":3,\"name\":\"Lemon\",\"sampleOTM\":{\"id\":1,\"name\":\"PineapplePEN\"}}]"));
     }
 
 }
