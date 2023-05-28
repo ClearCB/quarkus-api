@@ -3,8 +3,8 @@ package edu.craptocraft.finalapiquarkus.resources;
 import java.util.List;
 import java.util.Optional;
 
-import edu.craptocraft.finalapiquarkus.models.SampleOTM;
-import edu.craptocraft.finalapiquarkus.services.ServicesSampleOTM;
+import edu.craptocraft.finalapiquarkus.models.SampleOTO;
+import edu.craptocraft.finalapiquarkus.services.ServicesSampleOTO;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -17,18 +17,18 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/baseOTM")
-public class ResourcesSampleOTM {
+@Path("/baseOTO")
+public class ResourcesSampleOTO {
 
     @Inject
-    ServicesSampleOTM servicesSampleOTM;
+    ServicesSampleOTO servicesSampleMTO;
 
     // curl localhost:8080/base/list
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SampleOTM> list() {
-        return servicesSampleOTM.list();
+    public List<SampleOTO> list() {
+        return servicesSampleMTO.list();
     }
 
     // curl localhost:8080/base/get/1
@@ -37,10 +37,10 @@ public class ResourcesSampleOTM {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOne(@PathParam("id") long id) {
 
-        Optional<SampleOTM> sampleOTM = servicesSampleOTM.getSample(id);
+        Optional<SampleOTO> SampleOTO = servicesSampleMTO.getSample(id);
 
-        return sampleOTM.isPresent()
-                ? Response.status(Response.Status.OK).entity(sampleOTM.get()).build()
+        return SampleOTO.isPresent()
+                ? Response.status(Response.Status.OK).entity(SampleOTO.get()).build()
                 : Response.status(Response.Status.NOT_FOUND).build();
     }
 
@@ -48,9 +48,9 @@ public class ResourcesSampleOTM {
     // application/json" localhost:8080/base
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public SampleOTM post(SampleOTM sampleOTM) {
-        servicesSampleOTM.add(sampleOTM);
-        return sampleOTM;
+    public SampleOTO post(SampleOTO SampleOTO) {
+        servicesSampleMTO.add(SampleOTO);
+        return SampleOTO;
     }
 
     // curl -X PUT -H "Content-Type:
@@ -66,8 +66,8 @@ public class ResourcesSampleOTM {
     @Path("/{id}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public SampleOTM delete(SampleOTM sampleOTM) {
-        servicesSampleOTM.remove(sampleOTM);
-        return sampleOTM;
+    public SampleOTO delete(SampleOTO SampleOTO) {
+        servicesSampleMTO.remove(SampleOTO);
+        return SampleOTO;
     }
 }
