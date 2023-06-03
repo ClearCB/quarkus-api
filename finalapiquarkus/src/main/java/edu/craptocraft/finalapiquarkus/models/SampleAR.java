@@ -1,17 +1,9 @@
 package edu.craptocraft.finalapiquarkus.models;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "SampleAR")
-public class SampleAR extends PanacheEntityBase {
-
-    @Id
-    private int id;
+public class SampleAR extends PanacheEntity {
 
     @Column
     private String name;
@@ -19,17 +11,8 @@ public class SampleAR extends PanacheEntityBase {
     public SampleAR() {
     }
 
-    public SampleAR(int id, String name) {
-        this.id = id;
+    public SampleAR(String name) {
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -44,7 +27,6 @@ public class SampleAR extends PanacheEntityBase {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
@@ -58,8 +40,6 @@ public class SampleAR extends PanacheEntityBase {
         if (getClass() != obj.getClass())
             return false;
         SampleAR other = (SampleAR) obj;
-        if (id != other.id)
-            return false;
         if (name == null) {
             if (other.name != null)
                 return false;

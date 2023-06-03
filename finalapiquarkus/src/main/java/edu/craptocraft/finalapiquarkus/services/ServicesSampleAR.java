@@ -2,41 +2,33 @@ package edu.craptocraft.finalapiquarkus.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import edu.craptocraft.finalapiquarkus.models.SampleAR;
-import edu.craptocraft.finalapiquarkus.repository.RepositorySampleAR;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class ServicesSampleAR {
 
-    @Inject
-    RepositorySampleAR repositoryAR;
-
-    public ServicesSampleAR() {
-        // Evitar problemas
-    }
-
     public List<SampleAR> list() {
 
-        return repositoryAR.listAllSample();
+        Stream<SampleAR> samples = SampleAR.streamAll();
+        return samples.toList();
     }
 
     public void add(SampleAR sample) {
 
-        repositoryAR.createSample(sample);
+        sample.persist();
     }
 
-    public void remove(SampleAR sample) {
+    public void remove(long id) {
 
-        repositoryAR.deleteSample(sample);
+        SampleAR sampleAR = SampleAR.find("id", id).firstResult();
+        sampleAR.delete();
     }
 
     public Optional<SampleAR> getSample(long id) {
 
-        return repositoryAR.getSample(id).isPresent()
-                ? repositoryAR.getSample(id)
-                : Optional.ofNullable(null);
+        return SampleAR.find("id", id).firstResultOptional();
     }
 }

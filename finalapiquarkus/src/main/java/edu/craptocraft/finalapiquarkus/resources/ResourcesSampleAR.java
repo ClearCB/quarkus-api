@@ -66,8 +66,8 @@ public class ResourcesSampleAR {
     @Path("/{id}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public SampleAR delete(SampleAR sampleAR) {
-        servicesSampleAR.remove(sampleAR);
-        return sampleAR;
+    public String delete(@PathParam("id") long id) {
+        servicesSampleAR.remove(id);
+        return String.format("{'Message': 'Sample with id %o'}", id);
     }
 }
