@@ -13,11 +13,10 @@ public class Item extends PanacheEntityBase {
 
     @Id
     @Column(name = "item_nom")
-    @NotBlank
     private String nombre;
 
     @Column(name = "item_prop")
-    private long quality;
+    private int quality;
 
     @Column(name = "item_tipo")
     private String tipo;
@@ -25,10 +24,9 @@ public class Item extends PanacheEntityBase {
     public Item() {
     }
 
-    public Item(@NotBlank String nombre, int quality, String tipo) {
+    public Item(String nombre, int quality) {
         this.nombre = nombre;
         this.quality = quality;
-        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -49,10 +47,6 @@ public class Item extends PanacheEntityBase {
 
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
 }

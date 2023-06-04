@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.craptocraft.onequarkusapp.models.Item;
+import edu.craptocraft.onequarkusapp.models.Orden;
 import edu.craptocraft.onequarkusapp.models.Usuaria;
 import edu.craptocraft.onequarkusapp.services.ServiceOlli;
 import io.quarkus.test.junit.QuarkusTest;
@@ -22,8 +23,8 @@ public class ServiceTest {
     @PersistenceContext
     EntityManager em;
 
-    // @Inject
-    // ServiceOlli servicio;
+    @Inject
+    ServiceOlli servicio;
 
     /**
      * MAPPINGS de la entidades a las tablas de la BBDD.
@@ -65,48 +66,47 @@ public class ServiceTest {
      */
     @Test
     public void test_mapping_orden() {
-    Orden pedido = em.find(Orden.class, 1L);
-    Assertions.assertThat(pedido).isNotNull();
-    Assertions.assertThat(pedido.getUser().getNombre()).isEqualTo("Doobey");
-    Assertions.assertThat(pedido.getItem().getNombre()).isEqualToIgnoringCase("Elixir
-    of the Mongoose");
+        Orden pedido = em.find(Orden.class, 1L);
+        Assertions.assertThat(pedido).isNotNull();
+        Assertions.assertThat(pedido.getUser().getNombre()).isEqualTo("Doobey");
+        Assertions.assertThat(pedido.getItem().getNombre()).isEqualToIgnoringCase("Elixir of the Mongoose");
     }
 
-    // /** SERVICIO */
+    /** SERVICIO */
 
-    // /**
-    // * Crea una clase llamada ServiceOlli e indica
-    // * que es una dependencia Quarkus
-    // */
+    /**
+     * Crea una clase llamada ServiceOlli e indica
+     * que es una dependencia Quarkus
+     */
 
-    // @Test
-    // public void test_inyeccion_servicio() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // }
+    @Test
+    public void test_inyeccion_servicio() {
+        Assertions.assertThat(servicio).isNotNull();
+    }
 
-    // /**
-    // * Implementa el metodo cargaUsuaria del servicio.
-    // * Devuelve la usuaria con el nombre indicado, si existe.
-    // * Si no existe, devuelve un objeto usuaria con sus propiedades
-    // * y valores como se indica en los casos test.
-    // */
-    // @Test
-    // public void test_carga_usuaria() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // Usuaria elfo = servicio.cargaUsuaria("Doobey");
-    // Assertions.assertThat(elfo).isNotNull();
-    // Assertions.assertThat(elfo.getNombre()).isEqualTo("Doobey");
-    // Assertions.assertThat(elfo.getDestreza()).isEqualTo(15);
-    // }
+    /**
+     * Implementa el metodo cargaUsuaria del servicio.
+     * Devuelve la usuaria con el nombre indicado, si existe.
+     * Si no existe, devuelve un objeto usuaria con sus propiedades
+     * y valores como se indica en los casos test.
+     */
+    @Test
+    public void test_carga_usuaria() {
+        Assertions.assertThat(servicio).isNotNull();
+        Usuaria elfo = servicio.cargaUsuaria("Doobey");
+        Assertions.assertThat(elfo).isNotNull();
+        Assertions.assertThat(elfo.getNombre()).isEqualTo("Doobey");
+        Assertions.assertThat(elfo.getDestreza()).isEqualTo(15);
+    }
 
-    // @Test
-    // public void test_carga_usuaria_no_existe() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // Usuaria profesor = servicio.cargaUsuaria("Severus");
-    // Assertions.assertThat(profesor).isNotNull();
-    // Assertions.assertThat(profesor.getNombre()).isEmpty();
-    // Assertions.assertThat(profesor.getDestreza()).isZero();
-    // }
+    @Test
+    public void test_carga_usuaria_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        Usuaria profesor = servicio.cargaUsuaria("Severus");
+        Assertions.assertThat(profesor).isNotNull();
+        Assertions.assertThat(profesor.getNombre()).isEmpty();
+        Assertions.assertThat(profesor.getDestreza()).isZero();
+    }
 
     // /**
     // * Implementa el metodo cargaItem del servicio.
@@ -115,84 +115,81 @@ public class ServiceTest {
     // * y valores como se indica en los casos test.
     // */
 
-    // @Test
-    // public void test_carga_item() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // Item item = servicio.cargaItem("Elixir of the Mongoose");
-    // Assertions.assertThat(item).isNotNull();
-    // Assertions.assertThat(item.getNombre()).isEqualTo("Elixir of the Mongoose");
-    // Assertions.assertThat(item.getQuality()).isEqualTo(7);
-    // }
+    @Test
+    public void test_carga_item() {
+        Assertions.assertThat(servicio).isNotNull();
+        Item item = servicio.cargaItem("Elixir of the Mongoose");
+        Assertions.assertThat(item).isNotNull();
+        Assertions.assertThat(item.getNombre()).isEqualTo("Elixir of the Mongoose");
+        Assertions.assertThat(item.getQuality()).isEqualTo(7);
+    }
 
-    // @Test
-    // public void test_carga_item_no_existe() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // Item item = servicio.cargaItem("Reliquias de la muerte");
-    // Assertions.assertThat(item).isNotNull();
-    // Assertions.assertThat(item.getNombre()).isEmpty();
-    // Assertions.assertThat(item.getQuality()).isZero();
-    // }
+    @Test
+    public void test_carga_item_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        Item item = servicio.cargaItem("Reliquias de la muerte");
+        Assertions.assertThat(item).isNotNull();
+        Assertions.assertThat(item.getNombre()).isEmpty();
+        Assertions.assertThat(item.getQuality()).isZero();
+    }
 
-    // /**
-    // * Implementa el metodo cargaOrden del servicio.
-    // * Devuelve una lista con los pedidos de la usuaria
-    // * con el nombre indicado, si existe.
-    // * Si no existe, devuelve una lista vacía.
-    // */
+    /**
+     * Implementa el metodo cargaOrden del servicio.
+     * Devuelve una lista con los pedidos de la usuaria
+     * con el nombre indicado, si existe.
+     * Si no existe, devuelve una lista vacía.
+     */
 
-    // @Test
-    // public void test_carga_orden() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // List<Orden> ordenes = servicio.cargaOrden("Hermione");
-    // Assertions.assertThat(ordenes).isNotNull();
-    // Assertions.assertThat(ordenes).hasSize(1);
-    // Assertions.assertThat(ordenes.get(0).getUser().getNombre()).isEqualToIgnoringCase("Hermione");
-    // Assertions.assertThat(ordenes.get(0).getItem().getNombre()).isEqualTo("+5
-    // Dexterity Vest");
-    // // Assertions.assertThat(ordenes).allMatch(orden ->
-    // // orden.getUser().getNombre().equalsIgnoreCase("Hermione"));
-    // // Assertions.assertThat(ordenes).allMatch(orden ->
-    // // orden.getItem().getNombre().equalsIgnoreCase("+5 Dexterity Vest"));
-    // }
+    @Test
+    public void test_carga_orden() {
+        Assertions.assertThat(servicio).isNotNull();
+        List<Orden> ordenes = servicio.cargaOrden("Hermione");
+        Assertions.assertThat(ordenes).isNotNull();
+        Assertions.assertThat(ordenes).hasSize(1);
+        Assertions.assertThat(ordenes.get(0).getUser().getNombre()).isEqualToIgnoringCase("Hermione");
+        Assertions.assertThat(ordenes.get(0).getItem().getNombre()).isEqualTo("+5 Dexterity Vest");
+        Assertions.assertThat(ordenes).allMatch(orden -> orden.getUser().getNombre().equalsIgnoreCase("Hermione"));
+        Assertions.assertThat(ordenes)
+                .allMatch(orden -> orden.getItem().getNombre().equalsIgnoreCase("+5 Dexterity Vest"));
+    }
 
-    // @Test
-    // public void test_carga_orden_no_existe() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // List<Orden> ordenes = servicio.cargaOrden("Severus");
-    // Assertions.assertThat(ordenes).isNotNull();
-    // Assertions.assertThat(ordenes).isEmpty();
-    // }
+    @Test
+    public void test_carga_orden_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        List<Orden> ordenes = servicio.cargaOrden("Severus");
+        Assertions.assertThat(ordenes).isNotNull();
+        Assertions.assertThat(ordenes).isEmpty();
+    }
 
-    // /**
-    // * Implementa el metodo "comanda" del servicio
-    // * que permite a una usuaria pedir un item.
-    // * La usuaria y el item ya existen en la bbdd (NO has de crearlos).
-    // *
-    // * Guarda esta orden en su tabla en la base de datos.
-    // *
-    // * El metodo devuelve la orden de tipo Orden creada.
-    // */
-    // @Test
-    // @Transactional
-    // public void test_comanda_ok() {
-    // Assertions.assertThat(servicio).isNotNull();
-    // Orden orden = servicio.comanda("Hermione", "AgedBrie");
-    // Assertions.assertThat(orden).isNotNull();
-    // Assertions.assertThat(orden.getId()).isNotZero();
-    // Assertions.assertThat(orden.getUser().getNombre()).isEqualTo("Hermione");
-    // Assertions.assertThat(orden.getItem().getNombre()).isEqualTo("AgedBrie");
+    /**
+     * Implementa el metodo "comanda" del servicio
+     * que permite a una usuaria pedir un item.
+     * La usuaria y el item ya existen en la bbdd (NO has de crearlos).
+     *
+     * Guarda esta orden en su tabla en la base de datos.
+     *
+     * El metodo devuelve la orden de tipo Orden creada.
+     */
+    @Test
+    @Transactional
+    public void test_comanda_ok() {
+        Assertions.assertThat(servicio).isNotNull();
+        Orden orden = servicio.comanda("Hermione", "AgedBrie");
+        Assertions.assertThat(orden).isNotNull();
+        Assertions.assertThat(orden.getId()).isNotZero();
+        Assertions.assertThat(orden.getUser().getNombre()).isEqualTo("Hermione");
+        Assertions.assertThat(orden.getItem().getNombre()).isEqualTo("AgedBrie");
 
-    // TypedQuery<Orden> query = em.createQuery(
-    // "select orden from Orden orden join orden.user user where user.nombre =
-    // 'Hermione'", Orden.class);
-    // List<Orden> pedidos = query.getResultList();
+        TypedQuery<Orden> query = em.createQuery(
+                "select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
+        List<Orden> pedidos = query.getResultList();
 
-    // Assertions.assertThat(pedidos).isNotNull();
-    // Assertions.assertThat(pedidos).hasSize(2);
-    // Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
-    // Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
-    // em.find(Orden.class, pedidos.get(1).getId()).delete();
-    // }
+        Assertions.assertThat(pedidos).isNotNull();
+        Assertions.assertThat(pedidos).hasSize(2);
+        Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
+        Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
+        em.find(Orden.class, pedidos.get(1).getId()).delete();
+    }
 
     // /**
     // * Implementa el metodo comanda del servicio
