@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "t_users")
@@ -19,6 +18,10 @@ public class Usuaria extends PanacheEntityBase {
     private long destreza;
 
     public Usuaria() {
+    }
+
+    public Usuaria(String nombre) {
+        this.nombre = nombre;
     }
 
     public Usuaria(String nombre, long destreza) {
